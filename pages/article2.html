@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="krusty krab, spongebob, spongebob squarepants, krabby patty, krusty krab website">
+        <meta name="description" content="Serving for over 25 years, the Krusty Krab is Bikini Bottom's premier destination for mouthwatering underwater fast food. We boast a menu with the most delectable under-the-sea delights, with food quality served in a lively nautical atmosphere and top-notch service which is what the Krusty Krab's known to deliver. Order up for an unforgettable experience where every bite is a taste of Bikini Bottom bliss, come spend your money here!">
+          <title>
+              Krusty Krab "2" Grand Reopening after COVID-19 pandemic!
+          </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script>
+            let userCart = JSON.parse(localStorage.getItem("cart")) || [];
+            let htmlContent = localStorage.getItem("content") || "";
+            let totalPrice = localStorage.getItem("total-price") || "$0"; 
+            let totalQuantity = localStorage.getItem("total-quantity") || 0;
+            window.onload = function() {
+                loadData();
+                function loadData() {
+                    document.getElementById("cart-items").innerHTML = htmlContent;
+                    document.getElementById("total-price").innerHTML = totalPrice;
+                    document.getElementById("cartsize").innerHTML = totalQuantity;
+                };
+            }
+
+            const foodItems = ["krabby-patty", "coral-bits", "barnacle-loaf", "jelly-patty", "kelp-jerky", "pretty-patty", "krusty-pizza", "pizza-patty", "krabby-meal", "krusty-kelp-dog", "buttered-barnacles", "nachos", "krabby-newburg", "kelp-rings", "swedish-barnacle-balls", "pipsqueak-patty", "krusty-kid-meal", "spongebob-sundae", "jelly-cake", "kelp-shake", "krusty-soda"];
+            const foodNames = ["Krabby Patty", "Coral Bits", "Barnacle Loaf", "Jelly Patty", "Kelp Jerky", "Pretty Patty", "Krusty Pizza", "Pizza Patty", "Krabby Meal", "Krusty Kelp Dog", "Buttered Barnacles", "Nachos", "Krabby Newburg", "Kelp Rings", "Swedish Barnacle Balls", "Pipsqueak Patty", "Krusty Kid's Meal", "Spongebob's Sundae", "Jelly Cake", "Kelp Shake", "Krusty Soda"];
+            const foodPrices = [16, 8, 12, 17, 5, 18, 17, 19, 25, 14, 17, 13, 30, 13, 8, 7, 10, 7, 10, 10, 9];
+
+            function proceedOrder() {
+                if (userCart.length != 0) {
+                    location.href = '/pages/delivery.html';
+                } else {
+                    alert("Fill your cart, you haven't bought anything yet!");
+                }
+            }
+
+            function addtoCart(foodMenu) {
+                var itemPresent = false;
+                if (userCart.length == 0) {
+                    itemPresent = false;
+                } else {
+                    for (let i = 0; i < userCart.length; i++) {
+                        if (userCart[i][0] === foodMenu) {
+                            itemPresent = true;
+                            break;
+                        } else {
+                            itemPresent = false;
+                        }
+                    }
+                }
+                if (itemPresent) {
+                    increment(foodMenu);
+                } else {
+                    var fooditem = "";
+                    var foodname = "";
+                    var foodprice = 0;
+                    var foodquantity = 0;
+                    for (let i = 0; i < foodItems.length; i++) {
+                        if (foodMenu == foodItems[i]) {
+                            fooditem = foodItems[i];
+                            foodname = foodNames[i];
+                            foodprice = foodPrices[i];
+                            foodquantity = 1;
+                            userCart.push([fooditem, foodname, foodprice, foodquantity]);
+                            break;
+                        }
+                    }
+                    let newItem = `<div class="item" id="${fooditem}-div"><div class="The-item"><h3 id="${fooditem}-name">${foodname}</h3></div><div class="quantity-n-price"><i class="fa fa-minus" onclick="decrement('${fooditem}')"></i><span id="${fooditem}-quantity">${foodquantity}</span><i class="fa fa-plus" onclick="increment('${fooditem}')"></i><h3 id="${fooditem}-price">$${foodprice}</h3></div></div>`;
+                    document.getElementById("cart-items").insertAdjacentHTML('beforeend', newItem);
+                    updateCart();
+                }
+            }
+
+            function clearCart() {
+                document.getElementById("cart-items").innerHTML = "";
+                userCart = [];
+                updateCart();
+            }
+
+            function decrement(fooditems) {
+                var number = document.getElementById(`${fooditems}-quantity`);
+                var quantity = Number(number.innerHTML);
+                quantity--;
+                number.innerHTML = quantity;
+                for (let i = 0; i < userCart.length; i++) {
+                    if (userCart[i][0] === fooditems) {
+                        var index = i;
+                        break;
+                    }
+                }
+                userCart[index][3] = quantity;
+                if (quantity == 0) {
+                    removefromCart(fooditems);
+                } else {
+                    var price = document.getElementById(`${fooditems}-price`);
+                    var quantityoffood = userCart[index][3];
+                    var priceoffood = userCart[index][2];
+                    var priceValue = priceoffood * quantityoffood;
+                    price.innerHTML = "$" + priceValue;
+                }
+                updateCart();
+            }
+
+            function increment(fooditems) {
+                var number = document.getElementById(`${fooditems}-quantity`);
+                var quantity = Number(number.innerHTML);
+                quantity++;
+                number.innerHTML = quantity;
+                for (let i = 0; i < userCart.length; i++) {
+                    if (userCart[i][0] === fooditems) {
+                        var index = i;
+                        break;
+                    }
+                }
+                userCart[index][3] = quantity;
+                var price = document.getElementById(`${fooditems}-price`);
+                var quantityoffood = userCart[index][3];
+                var priceoffood = userCart[index][2];
+                var priceValue = priceoffood * quantityoffood;
+                price.innerHTML = "$" + priceValue;
+                updateCart();
+            }
+
+            function removefromCart(f2) {
+                var element = document.getElementById(`${f2}-div`);
+                element.remove();
+                for (let i = 0; i < userCart.length; i++) {
+                    if (userCart[i][0] === f2) {
+                        var index = i;
+                        break;
+                    }
+                }
+                if (index > -1) {
+                    userCart.splice(index, 1);
+                }
+                updateCart();
+            }
+
+            function updateCart() {
+                var y = document.getElementById("cartsize");
+                var cartcount = 0;
+                if (userCart == []) {
+                    y.innerHTML = cartcount;
+                } else {
+                    for (let i = 0; i < userCart.length; i++) {
+                        cartcount += userCart[i][3];
+                    }
+                    y.innerHTML = cartcount;
+                }
+                var z = document.getElementById("total-price");
+                var total = 0;
+                if (userCart == []) {
+                    z.innerHTML = "$" + total;
+                } else {
+                    for (let i = 0; i < userCart.length; i++) {
+                        total += userCart[i][3] * userCart[i][2];
+                    }
+                    z.innerHTML = "$" + total;
+                }
+                localStorage.setItem("cart", JSON.stringify(userCart));
+                localStorage.setItem("content", document.getElementById("cart-items").innerHTML);
+                localStorage.setItem("total-price", z.innerHTML);
+                localStorage.setItem("total-quantity", y.innerHTML);
+            }
+
+            function navIcon() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+
+            function orderCart() {
+                var x = document.getElementById("cart");
+                if (x.className === "cart") {
+                    x.className += " visible";
+                } else {
+                    x.className = "cart";
+                }
+                var y = document.getElementById("overlay");
+                if (y.className === "overlay") {
+                    y.className += " visible";
+                } else {
+                    y.className = "overlay";
+                }
+                var z = document.getElementById("body");
+                if (z.className === "body") {
+                    z.className += " locked";
+                } else {
+                    z.className = "body";
+                }
+            }
+        </script>
+        <link rel="icon" type="image/x-icon" href="../media/site_icon.ico">
+        <link href="../style.css" rel="stylesheet">
+    </head>
+    <body class="body" id="body">
+        <header id="home">
+            <div class="container">
+                <div class="child null"></div>
+                <div class="child">
+                    <a href="../index.html"><img src="../media/Krusty_Krab_logo.jpeg" alt="logo" class="krusty"></a>
+                </div>
+                <div class="child null">
+                    <div class="interactive">
+                        <a onclick="orderCart()" style="margin-right: 7.5px;"><i class="fa fa-shopping-cart"></i></a>
+                        <span style="font-size: 25px; color: red;" id="cartsize">0</span>
+                        <a href="#contact" style="margin: 0 20px;"><i class="fa fa-map-marker"></i></a>
+                    </div>
+                </div>
+                <div class="cart" id="cart">
+                    <div class="cart-header">
+                        <h1>My Cart</h1>
+                        <button onclick="orderCart()" class="close-button"><i class="fa fa-times"></i></button>
+                    </div>
+                    <div class="cart-content">
+                        <div id="cart-items"></div>
+                        <div class="item" style="background-color: #fff;">
+                            <div class="The-item">
+                                <h3>Total</h3>
+                            </div>
+                            <div class="quantity-n-price">
+                                <h3 id="total-price">$0</h3>
+                            </div>
+                        </div>
+                        <div class="item" style="background-color: #fff;">
+                            <div class="The-item">
+                                <button onclick="clearCart()">Clear</button>
+                            </div>
+                            <div class="quantity-n-price">
+                                <button onclick="proceedOrder()">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="overlay" class="overlay"></div>
+            </div>
+        </header>
+        <nav>
+            <div class="topnav" id="myTopnav">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="menu.html">Menu</a>
+                <a href="promos.html">Promotions</a>
+                <a href="jobs.html">Careers</a>
+                <a href="news.html">Newsletter</a>
+                <a href="javascript:void(0);" class="icon" onclick="navIcon()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </nav>
+        <main>
+            <section class="article">
+                <a href="news.html"><-- Back to Newsletter</a>
+            </section>
+            <section class="blog">
+                <div class="blogz">
+                    <div class="post">
+                        <h2>Krusty Krab "2" Grand Reopening after COVID-19 pandemic!</h2>
+                        <img class="image" src="../media/krustyKrab2.png" alt="">
+                        <h3>By <a href="https://youtube.com/playlist?list=PLM1j2JqVBQfn_rJ4jc3IVDWcb4bOlrqe1&si=hGZNJg9kYkiyUOel">Bikini Bottom News</a> [March 17th, 2022]</h3>
+                        <p>After 3 years of lockdown since the year of 2019, the debut of the infamous coronavirus, the Krusty Krab happily opens its doors after the long wait of the economical comeback! The Krusty Krab "2" has opened another branch at Coral Avenue. Since years of having only one branch at the Bottom Feeder Lane and earning enough money to start another branch, the Krusty Krab is now even more accessible to Bikini Bottom residents. The Krusty Krab has began to make changes other than the reopening.</p>
+                        <figure class="blogimg">
+                            <img class="image" src="../media/scene2.png" alt="">
+                            <figcaption>The promotion of Squidward Tentacles, from cashier to cashier and manager.</figcaption>
+                        </figure>
+                        <p>The restaurant has appointed a new manager: Squidward Tentacles, cashier of the Krusty Krab, now working additionally as a manager. Squidward came to the podium and announced new initiatives and approaches to the grand open of the 2nd branch, declaring the employment of new employees to take care of the 2nd branch and to introduce new menu choices. "It has been an honor working with Mr. Krabs for over 10 years since my employment, I've never expected this new position for me but oh well," Squidward speaks, with a neutral expression.</p>
+                        <figure class="blogimg">
+                            <img class="image" src="../media/scene4.png" alt="">
+                            <figcaption>Spongebob Squarepants delivers his congratulations to Squidward, the new manager.</figcaption>
+                        </figure>
+                        <p>Spongebob Squarepants, the Krusty Krab's faithful fry cook, enters the podium and delivers a speech to congratulate Squidward Tentacles. "As the fry cook of the Krusty Krab, as you all know, I deliver my respects to my friend Squidward. We have been working with each other for more than 10 years. I was expecting the position, but a mature employee should better deserve this position", Spongebob proclaims, with ecstasy sparkling in his eyes. "I indeed understood that I am still one young employee here, but the cooking talent I possess has allowed me to continue working to this day."</p>
+                        <figure class="blogimg">
+                            <img class="image" src="../media/scene6.png" alt="">
+                            <figcaption>Nude starfish invades Krusty Krab stage in a parachute</figcaption>
+                        </figure>
+                        <p style="margin-bottom: 20px;">As the Krusty Krab opens itself for a new beginning, a troublesome incident has occurred at a time right before the ceremony ends. A nude starfish, with a flag reading "SPONGEBOB" on his buttocks, is seen to fly with a parachute right towards the stage and crash. The perpretator is found to be Patrick Star. After the incident, Mr. Krabs ensures the tendors of the event that such an accident will be prevented next time. Although the new beginning starts with a funny occassion, new happenings are yet to occur to the restaurant.</p>
+                    </div>
+                </div>
+                <div class="related">
+                    <br>
+                    <h2>Related Posts</h2>
+                    <br>
+                    <div class="related-container">
+                        <div class="related-post">
+                            <div class="post-image img-1"></div>
+                            <h2>Krusty Krab Launches Krusty Kruiser...</h2>
+                            <p>By <strong>Bikini Bottom News</strong> [June 17th, 2022]</p>
+                            <br>
+                            <a href="../pages/article1.html">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="contact" class="contact">
+            <div class="container">
+                <div class="child">
+                    <h2 class="heading" style="margin-bottom: 15px;">Drop Us a MESSAGE!</h2>
+                    <form action="https://formsubmit.co/thames2415@gmail.com" style="text-align: left;" method="post">
+                        <input type="text" name="name" placeholder="Name" required="true">
+                        <input type="email" name="email" placeholder="Email" required="true">
+                        <br>
+                        <input type="text" name="_subject" placeholder="Subject" required="true">
+                        <br>
+                        <textarea rows="10" cols="54" name="message" placeholder="Content" required="true"></textarea>
+                        <input type="hidden" name="_template" value="basic">
+                        <br>
+                        <figure id="loading2" class="loading2">
+                            <img class="loading" src="/media/loading.gif" alt="loading">
+                            <figcaption>This may take a while...</figcaption>
+                        </figure>
+                        <button type="reset" style="color: #fff;
+                            background-color: #9c0924;">Reset</button>
+                        <button type="submit" style="color: #fff; background-color: #31dea1;" onclick="this.form.submit(); this.disabled=true; var x = document.getElementById('loading2'); if (x.className === 'loading2') { x.className += ' visible'; } else { x.className = 'loading2';}">Send</button>
+                    </form>
+                </div>
+                <div class="child">
+                    <h1>The Krusty Krab</h1>
+                    <br>
+                    <h2 style="font-size: 15px;">The following website is a fan project based from the Spongebob Squarepants franchise. The Krusty Krab, Spongebob Squarepants, Krabby Patty, and all other names rooted from the Spongebob Squarepants franchise own all the rights to this project. Please support the official release.</h2>
+                    <br>
+                    <a href="#home">Back to Top</a>
+                    <br>
+                    <h2 style="margin-top: 20px;">Address</h2>
+                    <p class="address">831 Bottom Feeder Lane, <br>Bikini Bottom, Pacific Ocean <br>(11.6065° N, 165.3768° E)</p>
+                </div>
+                <div class="child">
+                    <h2>Know Us More</h2>
+                    <ul>
+                        <li><a href="https://www.facebook.com/TheKrustyKrabOfficial/"><i class="fa fa-facebook-official"></i> Facebook</a></li>
+                        <li><a href="https://spongebob.fandom.com/wiki/Encyclopedia_SpongeBobia"><i class="fa fa-wikipedia-w"></i> Spongebob Wiki</a></li>
+                        <li><a href="https://www.youtube.com/@NickelodeonUK"><i class="fa fa-youtube-play"></i> Nickelodeon</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

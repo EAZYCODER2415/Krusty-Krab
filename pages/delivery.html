@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="krusty krab, spongebob, spongebob squarepants, krabby patty, krusty krab website">
+        <meta name="description" content="Serving for over 25 years, the Krusty Krab is Bikini Bottom's premier destination for mouthwatering underwater fast food. We boast a menu with the most delectable under-the-sea delights, with food quality served in a lively nautical atmosphere and top-notch service which is what the Krusty Krab's known to deliver. Order up for an unforgettable experience where every bite is a taste of Bikini Bottom bliss, come spend your money here!">
+          <title>
+              Complete Your Order! - Krusty Krab
+          </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script>
+            let userCart = JSON.parse(localStorage.getItem("cart")) || [];
+            let htmlContent = localStorage.getItem("content") || "";
+            let totalPrice = localStorage.getItem("total-price") || "$0"; 
+            let totalQuantity = localStorage.getItem("total-quantity") || 0;
+
+            window.onload = function() {
+                loadData();
+                function loadData() {
+                    if (userCart.length == 0) {
+                        location.href = '404.html';
+                    } else {
+                        var orderSummary = document.getElementById("order-summary");
+                        var itemPrice = 0;
+                        var Price = 0;
+                        var Quantity = 0;
+                        for (let z = 0; z < userCart.length; z++) {
+                            Price = userCart[z][2];
+                            Quantity = userCart[z][3];
+                            itemPrice = Price * Quantity;
+                            orderSummary.innerHTML += `<div class="order-item"><h3>${userCart[z][1]} (x${userCart[z][3]})</h3><h3>$${itemPrice}</h3></div>`;
+                            orderSummary.innerHTML += `<input type="hidden" name="order-${z+1}" value="${userCart[z][1]}, x${userCart[z][3]}, Unit Price - $${userCart[z][2]}, Total - $${itemPrice}">`;
+                        }
+                        orderSummary.innerHTML += `<div class="order-item total-cost"><h2 class="total">Total</h2><h2 class="total">${totalPrice}</h2></div>`;
+                        orderSummary.innerHTML += `<input type="hidden" name="total" value="${totalPrice}">`;
+                        var orderSummary2 = document.getElementById("order-summary2");
+                        for (let j = 0; j < userCart.length; j++) {
+                            Price = userCart[j][2];
+                            Quantity = userCart[j][3];
+                            itemPrice = Price * Quantity;
+                            orderSummary2.innerHTML += `<div class="order-item"><h3>${userCart[j][1]} (x${userCart[j][3]})</h3><h3>$${itemPrice}</h3></div>`;
+                            orderSummary2.innerHTML += `<input type="hidden" name="order-${j+1}" value="${userCart[j][1]}, x${userCart[j][3]}, Unit Price - $${userCart[j][2]}, Total - $${itemPrice}">`;
+                        }
+                        orderSummary2.innerHTML += `<div class="order-item total-cost2"><h2 class="total">Total</h2><h2 class="total">${totalPrice}</h2></div>`;
+                        orderSummary2.innerHTML += `<input type="hidden" name="total" value="${totalPrice}">`;
+                    }
+                };
+            }
+
+            const foodItems = ["krabby-patty", "coral-bits", "barnacle-loaf", "jelly-patty", "kelp-jerky", "pretty-patty", "krusty-pizza", "pizza-patty", "krabby-meal", "krusty-kelp-dog", "buttered-barnacles", "nachos", "krabby-newburg", "kelp-rings", "swedish-barnacle-balls", "pipsqueak-patty", "krusty-kid-meal", "spongebob-sundae", "jelly-cake", "kelp-shake", "krusty-soda"];
+            const foodNames = ["Krabby Patty", "Coral Bits", "Barnacle Loaf", "Jelly Patty", "Kelp Jerky", "Pretty Patty", "Krusty Pizza", "Pizza Patty", "Krabby Meal", "Krusty Kelp Dog", "Buttered Barnacles", "Nachos", "Krabby Newburg", "Kelp Rings", "Swedish Barnacle Balls", "Pipsqueak Patty", "Krusty Kid's Meal", "Spongebob's Sundae", "Jelly Cake", "Kelp Shake", "Krusty Soda"];
+            const foodPrices = [16, 8, 12, 17, 5, 18, 17, 19, 25, 14, 17, 13, 30, 13, 8, 7, 10, 7, 10, 10, 9];
+
+            function navIcon() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+
+            // Tabbed Menu
+            function openMenu(menuName) {
+                var i, x, tablinks;
+                x = document.getElementsByClassName("menu");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < x.length; i++) {
+                    if (tablinks[i].className == "tablinks active") {
+                        tablinks[i].className = "tablinks";
+                    }
+                }
+                document.getElementById(menuName.toUpperCase()).className += " active";
+                document.getElementById(menuName).style.display = "block";
+            }
+        </script>
+        <link rel="icon" type="image/x-icon" href="../media/site_icon.ico">
+        <link href="../style.css" rel="stylesheet">
+    </head>
+    <body class="body" id="body">
+        <header id="home">
+            <div class="container">
+                <div class="child null"></div>
+                <div class="child">
+                    <a href="../index.html"><img src="../media/Krusty_Krab_logo.jpeg" alt="logo" class="krusty"></a>
+                </div>
+                <div class="child null">
+                    <div class="interactive">
+                        <a href="#contact" style="margin: 0 20px;"><i class="fa fa-map-marker"></i></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <nav>
+            <div class="topnav" id="myTopnav">
+                <a href="../index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="menu.html">Menu</a>
+                <a href="promos.html">Promotions</a>
+                <a href="jobs.html">Careers</a>
+                <a href="news.html">Newsletter</a>
+                <a href="javascript:void(0);" class="icon" onclick="navIcon()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </nav>
+        <main>
+            <section class="header">
+                <h1>You are almost done!</h1>
+                <h2>Complete Your Order!</h2>
+            </section>
+            <section class="delivery-form">
+                <div class="tabbed-forms">
+                    <div class="tab-selections">
+                        <a href="javascript:void(0)" id="DELIVER" class="tablinks active" onclick="openMenu('deliver')">Delivery</a>
+                        <a href="javascript:void(0)" onclick="openMenu('pickup')" class="tablinks" id="PICKUP">Pick-Up</a>
+                    </div>
+                    <div class="deliver menu" id="deliver">
+                        <form action="https://formsubmit.co/thames2415@gmail.com" method="POST">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="New Delivery Order from Krusty Krab!">
+                            <h1>Personal Information</h1>
+                            <div class="form-item">
+                                <input type="text" name="first-name" placeholder="First Name" required="true">
+                                <input type="text" name="last-name" placeholder="Last Name" required="true">
+                            </div>
+                            <div class="form-item">
+                                <input type="email" name="email-address" placeholder="Email Address" required="true">
+                                <input type="text" name="phone" placeholder="Phone Number" required="true">
+                            </div>
+                            <h1>Delivery Information</h1>
+                            <div class="form-item">
+                                <input type="text" name="address" placeholder="Street Address" required="true">
+                            </div>
+                            <div class="form-item">
+                                <input type="text" name="apt-unit" placeholder="Apt/Suite (Optional)">
+                            </div>
+                            <div class="form-item">
+                                <input type="text" name="postal-code" placeholder="Postal Code" required="true">
+                                <input type="text" name="city" placeholder="City" required="true">
+                                <input type="text" name="country" placeholder="Country" required="true">
+                            </div>
+                            <br>
+                            <h1>Order Review</h1>
+                            <div class="order-summary" id="order-summary"></div>
+                            <br>
+                            <figure id="loading4" class="loading4">
+                                <img class="loading" src="/media/loading.gif" alt="loading">
+                                <figcaption>This may take a while...</figcaption>
+                            </figure>
+                            <div class="form-item">
+                                <button type="submit" onclick="this.form.submit(); this.disabled=true; var x = document.getElementById('loading4'); if (x.className === 'loading4') { x.className += ' visible'; } else { x.className = 'loading4';} localStorage.clear();">Submit Order</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="pickup menu" id="pickup">
+                        <form action="https://formsubmit.co/thames2415@gmail.com" method="POST">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="New Pickup Order from Krusty Krab!">
+                            <h1>Pickup Location</h1>
+                            <div class="form-item">
+                                <h3>831 Bottom Feeder Lane, <br>Bikini Bottom, Pacific Ocean <br>(11.6065° N, 165.3768° E)</h3>
+                            </div>
+                            <h1>Pickup Time</h1>
+                            <div class="form-item">
+                                <h3>Keep in mind that time zone is Pacific Time (PT)</h3>
+                            </div>
+                            <div class="form-item">
+                                <input list="times" placeholder="Select pickup time" id="pickup-time" required="true">
+                                <datalist id="times">
+                                    <option value="4:00 pm">
+                                    <option value="4:15 pm">
+                                    <option value="4:30 pm">
+                                    <option value="4:45 pm">
+                                    <option value="5:00 pm">
+                                    <option value="5:15 pm">
+                                    <option value="5:30 pm">
+                                    <option value="5:45 pm">
+                                </datalist>
+                            </div>
+                            <h1>Pickup Information</h1>
+                            <div class="form-item">
+                                <input type="text" name="first-name" placeholder="First Name" required="true">
+                                <input type="text" name="last-name" placeholder="Last Name" required="true">
+                            </div>
+                            <div class="form-item">
+                                <input type="email" name="email-address" placeholder="Email Address" required="true">
+                                <input type="text" name="phone" placeholder="Phone Number" required="true">
+                            </div>
+                            <br>
+                            <h1>Order Review</h1>
+                            <div class="order-summary2" id="order-summary2"></div>
+                            <br>
+                            <figure id="loading5" class="loading5">
+                                <img class="loading" src="/media/loading.gif" alt="loading">
+                                <figcaption>This may take a while...</figcaption>
+                            </figure>
+                            <div class="form-item">
+                                <button type="submit" onclick="this.form.submit(); this.disabled=true; var x = document.getElementById('loading5'); if (x.className === 'loading5') { x.className += ' visible'; } else { x.className = 'loading5';} localStorage.clear();">Submit Order</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="contact" class="contact">
+            <div class="container">
+                <div class="child">
+                    <h2 class="heading" style="margin-bottom: 15px;">Drop Us a MESSAGE!</h2>
+                    <form action="https://formsubmit.co/thames2415@gmail.com" style="text-align: left;" method="post">
+                        <input type="text" name="name" placeholder="Name" required="true">
+                        <input type="email" name="email" placeholder="Email" required="true">
+                        <br>
+                        <input type="text" name="_subject" placeholder="Subject" required="true">
+                        <br>
+                        <textarea rows="10" cols="54" name="message" placeholder="Content" required="true"></textarea>
+                        <input type="hidden" name="_template" value="basic">
+                        <br>
+                        <figure id="loading2" class="loading2">
+                            <img class="loading" src="/media/loading.gif" alt="loading">
+                            <figcaption>This may take a while...</figcaption>
+                        </figure>
+                        <button type="reset" style="color: #fff;
+                            background-color: #9c0924;">Reset</button>
+                        <button type="submit" style="color: #fff; background-color: #31dea1;" onclick="this.form.submit(); this.disabled=true; var x = document.getElementById('loading2'); if (x.className === 'loading2') { x.className += ' visible'; } else { x.className = 'loading2';}">Send</button>
+                    </form>
+                </div>
+                <div class="child">
+                    <h1>The Krusty Krab</h1>
+                    <br>
+                    <h2 style="font-size: 15px;">The following website is a fan project based from the Spongebob Squarepants franchise. The Krusty Krab, Spongebob Squarepants, Krabby Patty, and all other names rooted from the Spongebob Squarepants franchise own all the rights to this project. Please support the official release.</h2>
+                    <br>
+                    <a href="#home">Back to Top</a>
+                    <br>
+                    <h2 style="margin-top: 20px;">Address</h2>
+                    <p class="address">831 Bottom Feeder Lane, <br>Bikini Bottom, Pacific Ocean <br>(11.6065° N, 165.3768° E)</p>
+                </div>
+                <div class="child">
+                    <h2>Know Us More</h2>
+                    <ul>
+                        <li><a href="https://www.facebook.com/TheKrustyKrabOfficial/"><i class="fa fa-facebook-official"></i> Facebook</a></li>
+                        <li><a href="https://spongebob.fandom.com/wiki/Encyclopedia_SpongeBobia"><i class="fa fa-wikipedia-w"></i> Spongebob Wiki</a></li>
+                        <li><a href="https://www.youtube.com/@NickelodeonUK"><i class="fa fa-youtube-play"></i> Nickelodeon</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
