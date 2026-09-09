@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useCart } from '../context/CartContext';
 import '../index.css';
 
 const Menu = () => {
   const { addToCart } = useCart();
-  const handleAddToCart = (foodMenu) => {
-    addToCart(foodMenu);
-  };
 
   return (
     <>
@@ -26,7 +23,7 @@ const Menu = () => {
                 <h2 className="price">$16</h2>
               </div>
               <p>The Krusty Krab's well-known secret formula burger beloved by all fish!</p>
-              <button onClick={() => handleAddToCart('krabby-patty')}>Add to Cart</button>
+              <button onClick={() => addToCart('krabby-patty')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-5"></div>
@@ -35,7 +32,7 @@ const Menu = () => {
                 <h2 className="price">$18</h2>
               </div>
               <p>Colored Krabby Patties with its distinct flavor of each color, a rainbowed patty set!</p>
-              <button onClick={() => handleAddToCart('pretty-patty')}>Add to Cart</button>
+              <button onClick={() => addToCart('pretty-patty')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-6"></div>
@@ -44,7 +41,7 @@ const Menu = () => {
                 <h2 className="price">$17</h2>
               </div>
               <p>A unique Krabby Patty with an additional jellyfish jelly topping, slimy and tasty!</p>
-              <button onClick={() => handleAddToCart('jelly-patty')}>Add to Cart</button>
+              <button onClick={() => addToCart('jelly-patty')}>Add to Cart</button>
             </div>
           </div>
           <br />
@@ -56,7 +53,7 @@ const Menu = () => {
                 <h2 className="price">$17</h2>
               </div>
               <p>The Krusty Krab-style pepperoni pizza made from mashed Krusty dough and exquisite cheese.</p>
-              <button onClick={() => handleAddToCart('krusty-pizza')}>Add to Cart</button>
+              <button onClick={() => addToCart('krusty-pizza')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-8"></div>
@@ -65,7 +62,7 @@ const Menu = () => {
                 <h2 className="price">$19</h2>
               </div>
               <p>A Krabby Patty with a geniunely sized Krusty Pizza, order if you dare to finish it.</p>
-              <button onClick={() => handleAddToCart('pizza-patty')}>Add to Cart</button>
+              <button onClick={() => addToCart('pizza-patty')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-9"></div>
@@ -74,7 +71,7 @@ const Menu = () => {
                 <h2 className="price">$25</h2>
               </div>
               <p>A full set of Krabby Patties and fries, a perfect option to complete a meal!</p>
-              <button onClick={() => handleAddToCart('krabby-meal')}>Add to Cart</button>
+              <button onClick={() => addToCart('krabby-meal')}>Add to Cart</button>
             </div>
           </div>
           <br />
@@ -86,7 +83,7 @@ const Menu = () => {
                 <h2 className="price">$30</h2>
               </div>
               <p>The Krusty Krab's only classy steak dish (won't include the whole details).</p>
-              <button onClick={() => handleAddToCart('krabby-newburg')}>Add to Cart</button>
+              <button onClick={() => addToCart('krabby-newburg')}>Add to Cart</button>
             </div>
           </div>
           <br />
@@ -100,7 +97,7 @@ const Menu = () => {
                 <h2 className="price">$14</h2>
               </div>
               <p>The Krusty Dog with a mix of vegan kelp, go ahead and try it vegans!</p>
-              <button onClick={() => handleAddToCart('krusty-kelp-dog')}>Add to Cart</button>
+              <button onClick={() => addToCart('krusty-kelp-dog')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-11"></div>
@@ -109,7 +106,7 @@ const Menu = () => {
                 <h2 className="price">$17</h2>
               </div>
               <p>Soft dough from barnacles made to look like pancakes with butter on top!</p>
-              <button onClick={() => handleAddToCart('buttered-barnacles')}>Add to Cart</button>
+              <button onClick={() => addToCart('buttered-barnacles')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-12"></div>
@@ -118,7 +115,7 @@ const Menu = () => {
                 <h2 className="price">$12</h2>
               </div>
               <p>Learn more about our rich history and how the Krusty Krab came to be today!</p>
-              <button onClick={() => handleAddToCart('barnacle-loaf')}>Add to Cart</button>
+              <button onClick={() => addToCart('barnacle-loaf')}>Add to Cart</button>
             </div>
           </div>
           <br />
@@ -132,7 +129,7 @@ const Menu = () => {
                 <h2 className="price">$13</h2>
               </div>
               <p>An under-the-sea Mexican dish consisting of tortilla chips and totopos, can be found near the Pacific Ocean.</p>
-              <button onClick={() => handleAddToCart('nachos')}>Add to Cart</button>
+              <button onClick={() => addToCart('nachos')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-14"></div>
@@ -141,7 +138,7 @@ const Menu = () => {
                 <h2 className="price">$8</h2>
               </div>
               <p>Crispy bits of pale pink corals with sweet flavor and exquisite taste.</p>
-              <button onClick={() => handleAddToCart('coral-bits')}>Add to Cart</button>
+              <button onClick={() => addToCart('coral-bits')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-15"></div>
@@ -150,7 +147,7 @@ const Menu = () => {
                 <h2 className="price">$13</h2>
               </div>
               <p>Deep-fried kelp shaped as rings, like the Onion Rings.</p>
-              <button onClick={() => handleAddToCart('kelp-rings')}>Add to Cart</button>
+              <button onClick={() => addToCart('kelp-rings')}>Add to Cart</button>
             </div>
           </div>
           <br />
@@ -164,7 +161,7 @@ const Menu = () => {
                 <h2 className="price">$5</h2>
               </div>
               <p>A spoof of beef jerky in a snack bag, enjoy your treat!</p>
-              <button onClick={() => handleAddToCart('kelp-jerky')}>Add to Cart</button>
+              <button onClick={() => addToCart('kelp-jerky')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-18"></div>
@@ -173,7 +170,7 @@ const Menu = () => {
                 <h2 className="price">$7</h2>
               </div>
               <p>Fear of the Krabby Patty not fitting in your stomach? Here's a kids size Krabby Patty!</p>
-              <button onClick={() => handleAddToCart('pipsqueak-patty')}>Add to Cart</button>
+              <button onClick={() => addToCart('pipsqueak-patty')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-19"></div>
@@ -182,7 +179,7 @@ const Menu = () => {
                 <h2 className="price">$10</h2>
               </div>
               <p>A Krabby Meal specially designed for children aged less than 13.</p>
-              <button onClick={() => handleAddToCart('krusty-kid-meal')}>Add to Cart</button>
+              <button onClick={() => addToCart('krusty-kid-meal')}>Add to Cart</button>
             </div>
           </div>
           <br />
@@ -194,7 +191,7 @@ const Menu = () => {
                 <h2 className="price">$8</h2>
               </div>
               <p>An ice cream sundae made by Spongebob. Be careful, it's too smelly for customers!</p>
-              <button onClick={() => handleAddToCart('spongebob-sundae')}>Add to Cart</button>
+              <button onClick={() => addToCart('spongebob-sundae')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-21"></div>
@@ -203,7 +200,7 @@ const Menu = () => {
                 <h2 className="price">$7</h2>
               </div>
               <p>Swedish barnacle meatballs in a can, enjoy it!</p>
-              <button onClick={() => handleAddToCart('swedish-barnacle-balls')}>Add to Cart</button>
+              <button onClick={() => addToCart('swedish-barnacle-balls')}>Add to Cart</button>
             </div>
             <div className="food-card">
               <div className="food-card-image img-22"></div>
@@ -212,7 +209,7 @@ const Menu = () => {
                 <h2 className="price">$10</h2>
               </div>
               <p>A special dessert for jelly lovers, enjoy the taste!</p>
-              <button onClick={() => handleAddToCart('jelly-cake')}>Add to Cart</button>
+              <button onClick={() => addToCart('jelly-cake')}>Add to Cart</button>
             </div>
           </div>
           <br />
@@ -220,22 +217,22 @@ const Menu = () => {
           <br />
           <div className="food-card-container">
             <div className="food-card">
-              <div className="food-card-image img-23"></div>
+              <div className="food-cart-image img-23"></div>
               <div className="food-card-header">
                 <h2>Kelp Shake</h2>
                 <h2 className="price">$10</h2>
               </div>
               <p>A secret formula soft drink made out of kelp! Don't drink too much though...</p>
-              <button onClick={() => handleAddToCart('kelp-shake')}>Add to Cart</button>
+              <button onClick={() => addToCart('kelp-shake')}>Add to Cart</button>
             </div>
             <div className="food-card">
-              <div className="food-card-image img-24"></div>
+              <div className="food-cart-image img-24"></div>
               <div className="food-card-header">
                 <h2>Krusty Soda</h2>
                 <h2 className="price">$9</h2>
               </div>
               <p>The Krusty Krab's trademark soda drink made out of seafoam!</p>
-              <button onClick={() => handleAddToCart('krusty-soda')}>Add to Cart</button>
+              <button onClick={() => addToCart('krusty-soda')}>Add to Cart</button>
             </div>
           </div>
         </section>

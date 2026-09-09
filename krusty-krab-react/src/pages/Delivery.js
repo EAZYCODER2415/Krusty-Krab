@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useCart } from '../context/CartContext';
 import '../index.css';
 
 const Delivery = () => {
-  const { cart, totalPrice, totalQuantity } = useCart();
+  const { cart, totalPrice } = useCart();
 
   const navIcon = () => {
     const x = document.getElementById("myTopnav");
@@ -24,8 +24,8 @@ const Delivery = () => {
         <section className="delivery-form">
           <div className="tabbed-forms">
             <div className="tab-selections">
-              <a href="javascript:void(0)" id="DELIVER" className="tablinks active" onClick={navIcon}>Delivery</a>
-              <a href="javascript:void(0)" onClick={navIcon} className="tablinks" id="PICKUP">Pick-Up</a>
+              <button id="DELIVER" className="tablinks active" onClick={navIcon}>Delivery</button>
+              <button onClick={navIcon} className="tablinks" id="PICKUP">Pick-Up</button>
             </div>
             <div className="deliver menu" id="deliver">
               <form action="https://formsubmit.co/thames2415@gmail.com" method="POST">

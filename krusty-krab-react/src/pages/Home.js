@@ -22,7 +22,7 @@ const Home = () => {
               <p>
                 Serving for over 25 years, the Krusty Krab is Bikini Bottom's premier destination for mouthwatering underwater fast food. We boast a menu with the most delectable under-the-sea delights, with food quality served in a lively nautical atmosphere and top-notch service which is what the Krusty Krab's known to deliver. Order up for an unforgettable experience where every bite is a taste of Bikini Bottom bliss, come spend your money here!
               </p>
-              <button onClick={() => window.location.href = '/menu';}>Order Now</button>
+              <button onClick={() => { window.location.href = '/menu'; }}>Order Now</button>
             </div>
             <div className="child image image1"></div>
           </div>
@@ -33,21 +33,21 @@ const Home = () => {
           <div className="container">
             <div className="child">
               <a onClick={() => handleAddToCart('krabby-patty')}>
-                <img src="/media/burgers.png" alt="krabby-patty" className="burger" />
+                <img src="%PUBLIC_URL%/media/burgers.png" alt="krabby-patty" className="burger" />
               </a>
               <br />
               <h2>Krabby Patty</h2>
             </div>
             <div className="child">
               <a onClick={() => handleAddToCart('coral-bits')}>
-                <img src="/media/coral_bits.jpg" alt="coral-bits" className="burger" />
+                <img src="%PUBLIC_URL%/media/coral_bits.jpg" alt="coral-bits" className="burger" />
               </a>
               <br />
               <h2>Coral Bits</h2>
             </div>
             <div className="child">
               <a onClick={() => handleAddToCart('krusty-pizza')}>
-                <img src="/media/pizza.png" alt="pizza" className="burger" />
+                <img src="%PUBLIC_URL%/media/pizza.png" alt="pizza" className="burger" />
               </a>
               <br />
               <h2>Krusty Pizza</h2>
@@ -57,7 +57,7 @@ const Home = () => {
           <div className="container">
             <div className="child">
               <a onClick={() => handleAddToCart('kelp-shake')}>
-                <img src="/media/kelp_shake.png" alt="kelp-shake" className="burger" />
+                <img src="%PUBLIC_URL%/media/kelp_shake.png" alt="kelp-shake" className="burger" />
               </a>
               <br />
               <h2>Kelp Shake</h2>
@@ -78,7 +78,7 @@ const Home = () => {
             </div>
           </div>
           <br />
-          <button onClick={() => window.location.href = '/menu';}>See Menu</button>
+          <button onClick={() => { window.location.href = '/menu'; }}>See Menu</button>
         </section>
         <section className="more">
           <div className="card-container">

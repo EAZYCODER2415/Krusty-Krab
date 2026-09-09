@@ -32,9 +32,6 @@ export const CartProvider = ({ children }) => {
         } else {
           itemPresent = false;
         }
-      }
-    }
-
     if (itemPresent) {
       increment(foodMenu);
     } else {
@@ -42,15 +39,22 @@ export const CartProvider = ({ children }) => {
       let foodname = "";
       let foodprice = 0;
       let foodquantity = 0;
+      let foundIndex = -1;
       for (let i = 0; i < foodItems.length; i++) {
         if (foodMenu === foodItems[i]) {
-          fooditem = foodItems[i];
-          foodname = foodNames[i];
-          foodprice = foodPrices[i];
-          foodquantity = 1;
-          setCart(prev => [...prev, [fooditem, foodname, foodprice, foodquantity]]);
+          foundIndex = i;
           break;
         }
+      }
+      
+      if (foundIndex !== -1) {
+        fooditem = foodItems[foundIndex];
+        foodname = foodNames[foundIndex];
+        foodprice = foodPrices[foundIndex];
+        foodquantity = 1;
+        setCart(prev => [...prev, [fooditem, foodname, foodprice, foodquantity]]);
+      }
+    }
       }
     }
   };

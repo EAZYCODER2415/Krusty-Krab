@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import '../index.css'; // Ensure CSS is imported (though already in App.js)
@@ -42,7 +42,7 @@ const Header = () => {
         <div className="container">
           <div className="child null"></div>
           <div className="child">
-            <Link to="/"><img src="/media/Krusty_Krab_logo.jpeg" alt="logo" className="krusty" /></Link>
+            <Link to="/"><img src="%PUBLIC_URL%/media/Krusty_Krab_logo.jpeg" alt="logo" className="krusty" /></Link>
           </div>
           <div className="child null">
             <div className="interactive">
@@ -94,9 +94,9 @@ const Header = () => {
           <Link to="/promos">Promotions</Link>
           <Link to="/jobs">Careers</Link>
           <Link to="/news">Newsletter</Link>
-          <Link href="javascript:void(0);" className="icon" onClick={navIcon}>
+          <div className="icon" onClick={navIcon}>
             <i className="fa fa-bars"></i>
-          </Link>
+          </div>
         </div>
       </nav>
     </>
