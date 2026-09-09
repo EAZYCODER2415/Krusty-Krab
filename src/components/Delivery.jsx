@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { useCart } from '../context/CartContext';
-import '../index.css';
+import React from 'react';
+import { useCart } from './CartContext';
+import '../styles/main.css';
 
 const Delivery = () => {
   const { cart, totalPrice } = useCart();
@@ -57,7 +57,7 @@ const Delivery = () => {
                 <div className="order-summary" id="order-summary">
                   {/* We'll map over the cart to create order items */}
                   {cart.map((item, index) => {
-                    const [fooditem, foodname, foodprice, foodquantity] = item;
+                    const [, foodname, foodprice, foodquantity] = item;
                     const itemPrice = foodprice * foodquantity;
                     return (
                       <React.Fragment key={index}>
@@ -141,7 +141,7 @@ const Delivery = () => {
                 <div className="order-summary2" id="order-summary2">
                   {/* Same as above for pickup */}
                   {cart.map((item, index) => {
-                    const [fooditem, foodname, foodprice, foodquantity] = item;
+                    const [, foodname, foodprice, foodquantity] = item;
                     const itemPrice = foodprice * foodquantity;
                     return (
                       <React.Fragment key={index}>

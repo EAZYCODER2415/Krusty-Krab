@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-import { useCart } from '../context/CartContext';
-import '../index.css';
+import { useCart } from './CartContext';
+import '../styles/main.css';
 
 const Home = () => {
   const { addToCart } = useCart();
@@ -32,22 +31,22 @@ const Home = () => {
           <br />
           <div className="container">
             <div className="child">
-              <a onClick={() => handleAddToCart('krabby-patty')}>
-                <img src="%PUBLIC_URL%/media/burgers.png" alt="krabby-patty" className="burger" />
+              <a href="#krabby-patty" onClick={(event) => { event.preventDefault(); handleAddToCart('krabby-patty'); }}>
+                <img src="/media/burgers.png" alt="krabby-patty" className="burger" />
               </a>
               <br />
               <h2>Krabby Patty</h2>
             </div>
             <div className="child">
-              <a onClick={() => handleAddToCart('coral-bits')}>
-                <img src="%PUBLIC_URL%/media/coral_bits.jpg" alt="coral-bits" className="burger" />
+              <a href="#coral-bits" onClick={(event) => { event.preventDefault(); handleAddToCart('coral-bits'); }}>
+                <img src="/media/coral_bits.jpg" alt="coral-bits" className="burger" />
               </a>
               <br />
               <h2>Coral Bits</h2>
             </div>
             <div className="child">
-              <a onClick={() => handleAddToCart('krusty-pizza')}>
-                <img src="%PUBLIC_URL%/media/pizza.png" alt="pizza" className="burger" />
+              <a href="#krusty-pizza" onClick={(event) => { event.preventDefault(); handleAddToCart('krusty-pizza'); }}>
+                <img src="/media/pizza.png" alt="pizza" className="burger" />
               </a>
               <br />
               <h2>Krusty Pizza</h2>
@@ -56,21 +55,21 @@ const Home = () => {
           <br />
           <div className="container">
             <div className="child">
-              <a onClick={() => handleAddToCart('kelp-shake')}>
-                <img src="%PUBLIC_URL%/media/kelp_shake.png" alt="kelp-shake" className="burger" />
+              <a href="#kelp-shake" onClick={(event) => { event.preventDefault(); handleAddToCart('kelp-shake'); }}>
+                <img src="/media/kelp_shake.png" alt="kelp-shake" className="burger" />
               </a>
               <br />
               <h2>Kelp Shake</h2>
             </div>
             <div className="child">
-              <a onClick={() => handleAddToCart('krabby-newburg')}>
+              <a href="#krabby-newburg" onClick={(event) => { event.preventDefault(); handleAddToCart('krabby-newburg'); }}>
                 <img src="/media/krabby-newburg.png" alt="steak" className="burger" />
               </a>
               <br />
               <h2>Krabby Newburg</h2>
             </div>
             <div className="child">
-              <a onClick={() => handleAddToCart('kelp-rings')}>
+              <a href="#kelp-rings" onClick={(event) => { event.preventDefault(); handleAddToCart('kelp-rings'); }}>
                 <img src="/media/kelp_rings.png" alt="kelp-rings" className="burger" />
               </a>
               <br />

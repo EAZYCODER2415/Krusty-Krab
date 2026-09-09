@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const CartContext = createContext();
 
@@ -21,42 +21,26 @@ export const CartProvider = ({ children }) => {
     const foodNames = ["Krabby Patty", "Coral Bits", "Barnacle Loaf", "Jelly Patty", "Kelp Jerky", "Pretty Patty", "Krusty Pizza", "Pizza Patty", "Krabby Meal", "Krusty Kelp Dog", "Buttered Barnacles", "Nachos", "Krabby Newburg", "Kelp Rings", "Swedish Barnacle Balls", "Pipsqueak Patty", "Krusty Kid's Meal", "Spongebob's Sundae", "Jelly Cake", "Kelp Shake", "Krusty Soda"];
     const foodPrices = [16, 8, 12, 17, 5, 18, 17, 19, 25, 14, 17, 13, 30, 13, 8, 7, 10, 7, 10, 10, 9];
 
-    let itemPresent = false;
-    if (cart.length === 0) {
-      itemPresent = false;
-    } else {
-      for (let i = 0; i < cart.length; i++) {
-        if (cart[i][0] === foodMenu) {
-          itemPresent = true;
-          break;
-        } else {
-          itemPresent = false;
-        }
-    if (itemPresent) {
-      increment(foodMenu);
-    } else {
-      let fooditem = "";
-      let foodname = "";
-      let foodprice = 0;
-      let foodquantity = 0;
-      let foundIndex = -1;
-      for (let i = 0; i < foodItems.length; i++) {
-        if (foodMenu === foodItems[i]) {
-          foundIndex = i;
-          break;
-        }
-      }
-      
-      if (foundIndex !== -1) {
-        fooditem = foodItems[foundIndex];
-        foodname = foodNames[foundIndex];
-        foodprice = foodPrices[foundIndex];
-        foodquantity = 1;
-        setCart(prev => [...prev, [fooditem, foodname, foodprice, foodquantity]]);
-      }
+    const foundIndex = foodItems.indexOf(foodMenu);
+    if (foundIndex === -1) {
+      return;
     }
+
+    setCart((currentCart) => {
+      const existingItem = currentCart.find((item) => item[0] === foodMenu);
+      if (existingItem) {
+        return currentCart.map((item) => (
+          item[0] === foodMenu ? [item[0], item[1], item[2], item[3] + 1] : item
+        ));
       }
-    }
+
+      return [...currentCart, [
+        foodItems[foundIndex],
+        foodNames[foundIndex],
+        foodPrices[foundIndex],
+        1,
+      ]];
+    });
   };
 
   const removeFromCart = (f2) => {

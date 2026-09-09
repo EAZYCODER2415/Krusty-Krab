@@ -1,10 +1,6 @@
-import React from 'react';
-import { useCart } from '../context/CartContext';
-import '../index.css';
+import '../styles/main.css';
 
 const About = () => {
-  const { addToCart } = useCart();
-
   return (
     <>
       <main>
@@ -33,7 +29,7 @@ const About = () => {
           <br />
           <div className="container">
             <div className="child">
-              <div><img src="%PUBLIC_URL%/media/mr-krabs.jpg" alt="krabby-patty" className="burger2" /></div>
+              <div><img src="/media/mr-krabs.jpg" alt="krabby-patty" className="burger2" /></div>
               <br />
               <h2>Eugene H. Krabs</h2>
               <h3>Owner</h3>
@@ -41,7 +37,7 @@ const About = () => {
               <p>Founder of the legendary Krusty Krab and the creator of the Krabby Patty. His motto is "M.O.N.E.Y"!</p>
             </div>
             <div className="child">
-              <div><img src="%PUBLIC_URL%/media/squidward.jpeg" alt="coral-bits" className="burger2" /></div>
+              <div><img src="/media/squidward.jpeg" alt="coral-bits" className="burger2" /></div>
               <br />
               <h2>Squidward Tentacles</h2>
               <h3>Cashier</h3>
@@ -49,7 +45,7 @@ const About = () => {
               <p>Detail-oriented and responsible, Squidward is a guy who you can rely on for your orders. You can order something that's not in the menu and he will be eager to fulfill so.</p>
             </div>
             <div className="child">
-              <div><img src="%PUBLIC_URL%/media/spongebob.jpg" alt="pizza" className="burger2" /></div>
+              <div><img src="/media/spongebob.jpg" alt="pizza" className="burger2" /></div>
               <br />
               <h2>Spongebob Squarepants</h2>
               <h3>Fry Cook</h3>
